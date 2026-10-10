@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="前后端分离计算器系统">
+    <title>Calculator · 前后端分离计算器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="page-shell">
+        <header class="topbar">
+            <div>
+                <span class="eyebrow">SOFTWARE ENGINEERING PRACTICE</span>
+                <h1>Calculator</h1>
+                <p>计算由后端完成 · 历史记录持久化至 SQLite</p>
+            </div>
+            <button id="themeButton" class="ghost-button" type="button" aria-label="切换主题">🌙 主题</button>
+        </header>
+
+        <section class="workspace">
+            <article class="calculator-card">
+                <div class="display-wrap">
+                    <label for="display">表达式 / 结果</label>
+                    <input id="display" class="display" type="text" inputmode="decimal"
+                           placeholder="例如：(1+2)*3" autocomplete="off" autofocus>
+                    <div class="status-row">
+                        <span id="message" class="message" aria-live="polite"></span>
+                        <span id="backendStatus" class="backend-status">检查后端中…</span>
+                    </div>
+                </div>
+
+                <div class="button-grid" aria-label="计算器按键">
+                    <button class="danger" data-action="clear" type="button">AC</button>
+                    <button data-action="backspace" type="button">⌫</button>
+                    <button data-value="(" type="button">(</button>
+                    <button data-value=")" type="button">)</button>
+
+                    <button data-value="7" type="button">7</button>
+                    <button data-value="8" type="button">8</button>
+                    <button data-value="9" type="button">9</button>
+                    <button class="operator" data-value="÷" type="button">÷</button>
+
+                    <button data-value="4" type="button">4</button>
+                    <button data-value="5" type="button">5</button>
+                    <button data-value="6" type="button">6</button>
+                    <button class="operator" data-value="×" type="button">×</button>
+
+                    <button data-value="1" type="button">1</button>
+                    <button data-value="2" type="button">2</button>
+                    <button data-value="3" type="button">3</button>
+                    <button class="operator" data-value="-" type="button">−</button>
+
+                    <button data-value="0" type="button">0</button>
+                    <button data-value="." type="button">.</button>
+                    <button class="equal" data-action="calculate" type="button">=</button>
+                    <button class="operator" data-value="+" type="button">+</button>
+                </div>
+
+                <p class="hint">支持键盘输入，Enter 计算，Esc 清空。</p>
+            </article>
+
+            <aside class="history-card">
+                <div class="history-header">
+                    <div>
+                        <span class="eyebrow">DATABASE</span>
+                        <h2>计算历史</h2>
+                        <p>刷新页面后记录仍保留</p>
+                    </div>
+                    <div class="history-actions">
+                        <button id="refreshHistory" class="ghost-button" type="button">刷新</button>
+                        <button id="clearHistory" class="danger-outline" type="button">清空</button>
+                    </div>
+                </div>
+                <div id="historyList" class="history-list" aria-live="polite"></div>
+            </aside>
+        </section>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
